@@ -5,6 +5,9 @@ import json
 
 from flask_mongoengine import MongoEngine
 from src.application import get_result_from_model
+import os
+
+port = int(os.environ.get("PORT", 5000))
 
 app = Flask(__name__)
 
@@ -84,4 +87,4 @@ def get_result():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
