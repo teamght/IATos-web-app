@@ -5,13 +5,13 @@ import json
 
 from flask_mongoengine import MongoEngine
 from src.application import get_result_from_model
+from src.util import DB_URI
 import os
 
 port = int(os.environ.get("PORT", 5000))
 
 app = Flask(__name__)
 
-DB_URI = "mongodb+srv://iatosprueba:Iatosprueba@cluster0.bjihe.mongodb.net/iatosdata?retryWrites=true&w=majority"
 app.config["MONGODB_HOST"] = DB_URI
 
 db= MongoEngine(app)
@@ -82,9 +82,6 @@ def get_result():
 
     print('Fin para obtener resultados a partir de la tos: {}'.format(datetime.datetime.now()))
     return jsonify(f'Resultado: {mensaje_respuesta}')
-
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=True)
